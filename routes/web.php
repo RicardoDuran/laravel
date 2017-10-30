@@ -24,6 +24,7 @@ Route::get('saludos/{nombre?}', ['as'=>'saludos', 'uses' => 'PagesController@sal
 // Route::delete('mensajes/{id}', ['as'=>'messages.destroy', 'uses'=>'MessagesController@destroy']);
 /* USANDO ELOQUENT */ 
 Route::resource('mensajes', 'MessagesController');
+Route::resource('usuarios', 'UsersController');
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login');
 Route::get('logout', 'Auth\LoginController@logout');
@@ -35,3 +36,9 @@ Route::get('logout', 'Auth\LoginController@logout');
 // 	$user->save();
 // 	return $user;
 // });
+// App\User::create([
+// 'name' => 'Estudiante',
+// 'email' => 'estudiante@gmail.com',
+// 'role' => 'estudiante',
+// 'password' => bcrypt('123')
+// ]);

@@ -32,6 +32,9 @@
 						
 						@if (auth()->check())
 						<li class="{{ activeMenu('mensajes*') }}"><a href="{!! route('mensajes.index') !!}">Mensajes</a></li>
+							@if(auth()->user()->hasRoles('admin'))
+							<li class="{{ activeMenu('usuarios*') }}"><a href="{!! route('usuarios.index') !!}">Usuarios</a></li>
+							@endif
 						@endif
 						
 				</ul>
@@ -40,17 +43,14 @@
 					@if (auth()->guest())
 						<li class="{{ activeMenu('login') }}"><a href="/laravel/login">Login</a></li>
 						@else
-						<li><a href="/laravel/logout">Cerrar sesión de {{ auth()->user()->name }}</a> </li>
-					@endif
-					{{-- <li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+						<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ auth()->user()->name }} <b class="caret"></b></a>
 						<ul class="dropdown-menu">
-							<li><a href="#">Action</a></li>
-							<li><a href="#">Another action</a></li>
-							<li><a href="#">Something else here</a></li>
-							<li><a href="#">Separated link</a></li>
+							<li><a href="/laravel/logout">Cerrar Sesión</a></li>
 						</ul>
-					</li> --}}
+					</li> 
+					@endif
+					
 				</ul>
 			</div><!-- /.navbar-collapse -->
 		</div>
@@ -60,5 +60,6 @@
 	@yield('contenido')
 	<footer>Copyright {{ date('Y') }}</footer>
 </div>
+<script src="{{ asset('/public/js/all.js') }}"> </script>
 </body>
 </html>
